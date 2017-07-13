@@ -1,0 +1,21 @@
+version: '3'
+
+volumes:
+  rsync_src:
+    driver: nfs
+    driver_opts:
+      share: master-svr:volume1/master
+  rsync_dst:
+    driver: nfs
+    driver_opts:
+      share: local-svr:export
+
+services:
+  cron:
+    build: .
+    volumes:
+      - rsync_src:/rsync_src
+      - rsync_dst:/rsync_dst
+    restart: always
+    environment:
+      RSYNC_OPTIONS: "--archive --delete --verbose --timeout=3600"
