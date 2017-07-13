@@ -19,6 +19,7 @@ fi
 
 # Create a rsync script, makes it easier to sudo
 cat << EOF > /run-rsync.sh
+set -e
 sudo -u "${RSYNC_USER}" -g "${RSYNC_GROUP}" \
     rsync \
         ${RSYNC_OPTIONS} \
