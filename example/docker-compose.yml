@@ -12,7 +12,7 @@ volumes:
 
 services:
   cron:
-    build: .
+    image: dkruger/rsync-cron:latest
     volumes:
       - rsync_src:/rsync_src
       - rsync_dst:/rsync_dst
